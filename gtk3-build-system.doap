@@ -1,0 +1,18 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name xml:lang="en">gtk3-build-system</name>
+  <shortdesc xml:lang="en">GTK+3 build environment for Win32/Win64</shortdesc>
+  <homepage rdf:resource="http://www.tarnyko.net/repo/gtk3_build_system" />
+  <category rdf:resource="http://api.gnome.org/doap-extensions#development" />
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Manuel Bachmann</foaf:name>
+      <gnome:userid>mbachmann</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+</Project>
