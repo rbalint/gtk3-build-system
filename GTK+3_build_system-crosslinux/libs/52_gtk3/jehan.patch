@@ -1,0 +1,136 @@
+From cbc148ef4d313f223d7cb0849591914e3f4168ca Mon Sep 17 00:00:00 2001
+From: Jehan <jehan@girinstud.io>
+Date: Sun, 10 Nov 2013 23:02:14 +1300
+Subject: [PATCH] Fix autotools build for cross-compiled Windows.
+
+---
+ gdk/Makefile.am           | 19 ++++---------------
+ gtk/Makefile.am           | 21 +++++----------------
+ gtk/updateiconcache.c     |  2 --
+ modules/input/Makefile.am |  1 +
+ 4 files changed, 10 insertions(+), 33 deletions(-)
+
+diff --git a/gdk/Makefile.am b/gdk/Makefile.am
+index 8cba7c0..25241f8 100644
+--- gdk/Makefile.am
++++ gdk/Makefile.am
+@@ -179,8 +179,8 @@ endif # USE_QUARTZ
+ if USE_WIN32
+ libgdk_3_la_SOURCES += gdkkeynames.c
+ libgdk_3_la_LIBADD += win32/libgdk-win32.la
+-libgdk_3_la_DEPENDENCIES = win32/libgdk-win32.la win32/rc/gdk-win32-res.o gdk.def
+-libgdk_3_la_LDFLAGS += -Wl,win32/rc/gdk-win32-res.o -export-symbols $(srcdir)/gdk.def
++libgdk_3_la_DEPENDENCIES = win32/libgdk-win32.la win32/rc/gdk-win32-res.o
++libgdk_3_la_LDFLAGS += -Wl,win32/rc/gdk-win32-res.o
+ endif # USE_WIN32
+ 
+ if USE_BROADWAY
+@@ -270,22 +270,11 @@ CLEANFILES += $(gir_DATA) $(typelibs_DATA)
+ 
+ endif # HAVE_INTROSPECTION
+ 
+-if OS_WIN32
+-install-def-file: gdk.def
+-	mkdir -p $(DESTDIR)$(libdir)
+-	$(INSTALL) $(srcdir)/gdk.def $(DESTDIR)$(libdir)/gdk-win32-3.0.def
+-uninstall-def-file:
+-	-rm $(DESTDIR)$(libdir)/gdk-win32-3.0.def
+-else
+-install-def-file:
+-uninstall-def-file:
+-endif
+-
+ if MS_LIB_AVAILABLE
+ noinst_DATA = gdk-win32-$(GTK_API_VERSION).lib
+ 
+-gdk-win32-$(GTK_API_VERSION).lib: libgdk-win32-$(GTK_API_VERSION).la gdk.def
+-	lib -machine:@LIB_EXE_MACHINE_FLAG@ -name:libgdk-win32-$(GTK_API_VERSION)-@LT_CURRENT_MINUS_AGE@.dll -def:gdk.def -out:$@
++gdk-win32-$(GTK_API_VERSION).lib: libgdk-win32-$(GTK_API_VERSION).la
++	lib -machine:@LIB_EXE_MACHINE_FLAG@ -name:libgdk-win32-$(GTK_API_VERSION)-@LT_CURRENT_MINUS_AGE@.dll -out:$@
+ 
+ install-ms-lib:
+ 	mkdir -p $(DESTDIR)$(libdir)
+diff --git a/gtk/Makefile.am b/gtk/Makefile.am
+index b4ec377..a4bb307 100644
+--- gtk/Makefile.am
++++ gtk/Makefile.am
+@@ -61,29 +61,18 @@ no_undefined = -no-undefined
+ endif
+ 
+ if OS_WIN32
+-gtk_def = gtk.def
+-gtk_win32_symbols = -export-symbols $(srcdir)/gtk.def
+-
+ gtk_win32_res = gtk-win32-res.o
+ gtk_win32_res_ldflag = -Wl,gtk-win32-res.o
+ 
+ gtk-win32-res.o : gtk-win32.rc
+ 	$(WINDRES) gtk-win32.rc $@
+-
+-install-def-file: gtk.def
+-	$(INSTALL) $(srcdir)/gtk.def $(DESTDIR)$(libdir)/gtk-win32-3.0.def
+-uninstall-def-file:
+-	-rm $(DESTDIR)$(libdir)/gtk-win32-3.0.def
+-else
+-install-def-file:
+-uninstall-def-file:
+ endif
+ 
+ if MS_LIB_AVAILABLE
+ noinst_DATA = gtk-win32-$(GTK_API_VERSION).lib
+ 
+-gtk-win32-$(GTK_API_VERSION).lib: libgtk-win32-$(GTK_API_VERSION).la gtk.def
+-	lib -machine:@LIB_EXE_MACHINE_FLAG@ -name:libgtk-win32-$(GTK_API_VERSION)-@LT_CURRENT_MINUS_AGE@.dll -def:gtk.def -out:$@
++gtk-win32-$(GTK_API_VERSION).lib: libgtk-win32-$(GTK_API_VERSION).la
++	lib -machine:@LIB_EXE_MACHINE_FLAG@ -name:libgtk-win32-$(GTK_API_VERSION)-@LT_CURRENT_MINUS_AGE@.dll -out:$@
+ 
+ install-ms-lib:
+ 	$(INSTALL) gtk-win32-$(GTK_API_VERSION).lib $(DESTDIR)$(libdir)
+@@ -1231,8 +1220,8 @@ libgtk_3_la_DEPENDENCIES = $(deps)
+ if USE_WIN32
+ libgtk_3_la_LIBADD += -lole32 -lgdi32 -lcomdlg32 -lwinspool -lcomctl32
+ libgtk_3_la_LDFLAGS += -Wl,-luuid
+-libgtk_3_la_DEPENDENCIES += $(gtk_def) $(gtk_win32_res) $(deps)
+-libgtk_target_ldflags = $(gtk_win32_res_ldflag) $(gtk_win32_symbols)
++libgtk_3_la_DEPENDENCIES += $(gtk_win32_res) $(deps)
++libgtk_target_ldflags = $(gtk_win32_res_ldflag)
+ endif
+ 
+ install-exec-hook:
+@@ -1735,7 +1724,7 @@ if USE_EXTERNAL_ICON_CACHE
+ gtk_update_icon_cache_program = $(GTK_UPDATE_ICON_CACHE)
+ else
+ if CROSS_COMPILING
+-gtk_update_icon_cache_program = ./native/native-update-icon-cache
++gtk_update_icon_cache_program = ./native/native-update-icon-cache$(EXEEXT)
+ else
+ gtk_update_icon_cache_program = ./gtk-update-icon-cache$(EXEEXT)
+ endif
+diff --git a/gtk/updateiconcache.c b/gtk/updateiconcache.c
+index effea7c..f2170ce 100644
+--- gtk/updateiconcache.c
++++ gtk/updateiconcache.c
+@@ -15,8 +15,6 @@
+  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#include "config.h"
+-
+ #include <locale.h>
+ #include <stdlib.h>
+ #include <stdio.h>
+diff --git a/modules/input/Makefile.am b/modules/input/Makefile.am
+index 3ad28d1..6bbe0a9 100644
+--- modules/input/Makefile.am
++++ modules/input/Makefile.am
+@@ -20,6 +20,7 @@ DEPS = \
+ 
+ LDADDS = \
+ 	$(top_builddir)/gtk/libgtk-3.la	\
++	$(top_builddir)/gdk/libgdk-3.la	\
+ 	$(GTK_DEP_LIBS)
+ 
+ moduledir = $(libdir)/gtk-3.0/$(GTK_BINARY_VERSION)/immodules
+-- 
+1.8.1.2
+

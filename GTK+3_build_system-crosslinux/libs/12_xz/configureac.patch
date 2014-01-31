@@ -1,0 +1,29 @@
+--- xz/configure.ac	2013-10-03 21:59:15.685067778 +0000
++++ xz/configure.ac	2013-10-03 22:00:31.216585824 +0000
+@@ -15,7 +15,7 @@
+ # of malloc(), stat(), or lstat(), since we don't use those functions in
+ # a way that would cause the problems the autoconf macros check.
+ 
+-AC_PREREQ([2.64])
++AC_PREREQ([2.63])
+ 
+ AC_INIT([XZ Utils], m4_esyscmd([/bin/sh build-aux/version.sh]),
+ 	[lasse.collin@tukaani.org], [xz], [http://tukaani.org/xz/])
+@@ -476,7 +476,7 @@
+ echo
+ echo "Initializing Automake:"
+ 
+-AM_INIT_AUTOMAKE([1.12 foreign tar-v7 filename-length-max=99 serial-tests])
++AM_INIT_AUTOMAKE([1.11 foreign tar-v7 filename-length-max=99])
+ AC_PROG_LN_S
+ 
+ AC_PROG_CC_C99
+@@ -551,7 +551,7 @@
+ 
+ echo
+ echo "Initializing gettext:"
+-AM_GNU_GETTEXT_VERSION([0.18])
++AM_GNU_GETTEXT_VERSION([0.17])
+ AM_GNU_GETTEXT([external])
+ 
+ ###############################################################################

@@ -1,0 +1,12 @@
+--- xz/config.h	2013-08-28 14:50:11.071649453 +0200
++++ xz/config.h	2013-08-28 14:50:44.680465502 +0200
+@@ -309,6 +309,9 @@
+ /* Define to the version of this package. */
+ #define PACKAGE_VERSION "5.1.2alpha"
+ 
++/* Define URL of this package. */
++#define PACKAGE_URL "http://tukaani.org/xz"
++
+ /* Define to necessary symbol if this constant uses a non-standard name on
+    your system. */
+ /* #undef PTHREAD_CREATE_JOINABLE */

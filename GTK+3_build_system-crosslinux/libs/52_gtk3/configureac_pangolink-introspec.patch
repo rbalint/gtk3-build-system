@@ -1,0 +1,25 @@
+--- gtk+/configure.ac	2013-08-28 23:35:00.721510809 +0200
++++ gtk+/configure.ac	2013-08-28 23:35:24.212366860 +0200
+@@ -1264,9 +1264,6 @@
+ else
+ 	gtk_save_LIBS="$LIBS"
+         LIBS="$PANGO_LIBS $LIBS"
+-        AC_TRY_LINK_FUNC(pango_context_new, :, AC_MSG_ERROR([
+-*** Can't link to Pango. Pango is required to build
+-*** GTK+. For more information see http://www.pango.org]))
+         LIBS="$gtk_save_LIBS"
+ fi
+ 
+@@ -1551,12 +1548,6 @@
+ GLIB_GSETTINGS
+ 
+ ##################################################
+-# GObject introspection
+-##################################################
+-
+-GOBJECT_INTROSPECTION_CHECK(introspection_required_version)
+-
+-##################################################
+ # Packagekit module
+ #################################################
+ 

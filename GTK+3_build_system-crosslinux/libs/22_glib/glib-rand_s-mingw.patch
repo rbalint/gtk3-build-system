@@ -1,0 +1,28 @@
+--- glib/glib/grand.c	2013-10-29 02:10:42.000000000 +0000
++++ glib/glib/grand.c	2013-10-29 02:39:36.000000000 +0000
+@@ -267,8 +267,15 @@
+ #else /* G_OS_WIN32 */
+   gint i;
+ 
++#ifdef HAVE_RAND_S
+   for (i = 0; i < G_N_ELEMENTS (seed); i++)
+     rand_s (&seed[i]);
++#else
++  srand ((unsigned)time (NULL));
++  for (i = 0; i < G_N_ELEMENTS (seed); i++)
++    seed[i] = rand ();
++#endif
++
+ #endif
+ 
+   return g_rand_new_with_seed_array (seed, 4);
+--- glib/configure.ac	2013-10-29 02:42:51.000000000 +0000
++++ glib/configure.ac	2013-10-29 02:51:29.000000000 +0000
+@@ -1102,6 +1102,7 @@
+   # <wspiapi.h> in the Windows SDK and in mingw-w64 has wrappers for
+   # inline workarounds for getaddrinfo, getnameinfo and freeaddrinfo if
+   # they aren't present at run-time (on Windows 2000).
++  AC_CHECK_FUNCS(rand_s, AC_DEFINE(HAVE_RAND_S, 1, [Have rand_s]))
+   AC_CHECK_HEADER([wspiapi.h], [WSPIAPI_INCLUDE="#include <wspiapi.h>"])
+   AC_SUBST(WSPIAPI_INCLUDE)
+ ], [

@@ -1,0 +1,5 @@
+This is a bundle containing the GTK+ stack and its dependencies
+for Windows. 
+
+Latest development/unstable code, compiled with debug symbols.
+Useful only for debugging the stack or the build environment.

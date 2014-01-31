@@ -1,0 +1,11 @@
+--- zlib/win32/Makefile.gcc	2013-11-29 21:42:43.000000000 +0000
++++ zlib/win32/Makefile.gcc	2013-11-29 21:43:27.000000000 +0000
+@@ -41,7 +41,7 @@
+ #LOC = -DASMV
+ #LOC = -DDEBUG -g
+ 
+-PREFIX = i686-pc-mingw32-
++PREFIX = x86_64-w64-mingw32-
+ CC = $(PREFIX)gcc
+ CFLAGS = $(LOC) -O3 -Wall
+ 

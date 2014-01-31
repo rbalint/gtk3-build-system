@@ -1,0 +1,11 @@
+--- fontconfig/Makefile.am	2013-08-29 03:10:32.783982364 +0200
++++ fontconfig/Makefile.am	2013-08-29 03:10:46.577416986 +0200
+@@ -23,7 +23,7 @@
+ 
+ SUBDIRS=fontconfig fc-case fc-lang fc-glyphname src \
+ 	fc-cache fc-cat fc-list fc-match fc-pattern fc-query fc-scan \
+-	fc-validate conf.d test
++	fc-validate conf.d
+ if ENABLE_DOCS
+ SUBDIRS += doc
+ endif

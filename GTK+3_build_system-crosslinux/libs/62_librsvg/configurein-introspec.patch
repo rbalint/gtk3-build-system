@@ -1,0 +1,14 @@
+--- librsvg/configure.in	2013-08-29 04:46:03.333190102 +0200
++++ librsvg/configure.in	2013-08-29 04:51:59.719293053 +0200
+@@ -250,11 +250,6 @@
+   enable_introspection=yes
+ fi
+ 
+-GOBJECT_INTROSPECTION_CHECK([0.10.8])
+-
+-# Vala bindings
+-VAPIGEN_CHECK([0.17.1.26],,,[no])
+-
+ dnl ===========================================================================
+ 
+ m4_copy([AC_DEFUN],[glib_DEFUN])

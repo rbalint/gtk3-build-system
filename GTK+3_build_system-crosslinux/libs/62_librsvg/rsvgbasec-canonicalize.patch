@@ -1,0 +1,46 @@
+--- librsvg/rsvg-base.c	2013-08-29 06:28:28.163072758 +0200
++++ librsvg/rsvg-base.c	2013-08-29 06:39:50.135472109 +0200
+@@ -55,6 +55,9 @@
+ #include "rsvg-paint-server.h"
+ #include "rsvg-xml.h"
+ 
++ //
++#include <unistd.h>
++
+ /*
+  * This is configurable at runtime
+  */
+@@ -2191,7 +2194,15 @@
+     g_object_unref (base);
+ 
+     /* FIXME portability */
+-    cdir = canonicalize_file_name (dir);
++    //cdir = canonicalize_file_name (dir);
++    char *cwd = getcwd (NULL, 0);
++    if (dir[0] == '.' && dir[1] == '\0')
++        cdir = cwd;
++    if (chdir (cwd))
++        cdir = NULL;
++    cdir = chdir (dir) ? NULL : getcwd (NULL, 0);
++    chdir (cwd);
++    free (cwd);
+     g_free (dir);
+     if (cdir == NULL)
+         goto deny;
+@@ -2201,7 +2212,15 @@
+         goto deny;
+ 
+     /* FIXME portability */
+-    cpath = canonicalize_file_name (path);
++    //cpath = canonicalize_file_name (path);
++    cwd = getcwd (NULL, 0);
++    if (path[0] == '.' && path[1] == '\0')
++        cdir = cwd;
++    if (chdir (cwd))
++        cdir = NULL;
++    cdir = chdir (path) ? NULL : getcwd (NULL, 0);
++    chdir (cwd);
++    free (cwd);
+     g_free (path);
+ 
+     if (cpath == NULL)

@@ -1,0 +1,29 @@
+--- libpng/configure.ac	2013-10-03 19:46:36.823422086 +0000
++++ libpng/configure.ac	2013-10-01 15:48:57.076605630 +0000
+@@ -14,7 +14,7 @@
+ dnl This is here to prevent earlier autoconf from being used, it
+ dnl should not be necessary to regenerate configure if the time
+ dnl stamps are correct
+-AC_PREREQ([2.68])
++AC_PREREQ([2.63])
+ 
+ dnl Version number stuff here:
+ 
+@@ -27,7 +27,7 @@
+ # dist-xz requires automake 1.11 or later
+ # 1.12.2 fixes a security issue in 1.11.2 and 1.12.1
+ # 1.13 is required for parallel tests
+-AM_INIT_AUTOMAKE([1.13 foreign dist-xz color-tests silent-rules subdir-objects])
++AM_INIT_AUTOMAKE([1.11 foreign dist-xz color-tests subdir-objects])
+ # The following line causes --disable-maintainer-mode to be the default to
+ # configure, this is necessary because libpng distributions cannot rely on the
+ # time stamps of the autotools generated files being correct
+@@ -63,7 +63,7 @@
+ dnl libtool/libtoolize; version 2.4.2 is the tested version, this or any
+ dnl compatible later version may be used
+ LT_INIT([win32-dll])
+-LT_PREREQ([2.4.2])
++LT_PREREQ([2.2.6])
+ 
+ # Some awks crash when confronted with pnglibconf.dfa, do a test run now
+ # to make sure this doesn't happen

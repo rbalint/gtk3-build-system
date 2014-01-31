@@ -1,0 +1,10 @@
+--- glib/glib-2.0.pc.in	2013-10-03 22:32:10.247767513 +0000
++++ glib/glib-2.0.pc.in	2013-10-03 22:32:29.752159452 +0000
+@@ -11,6 +11,6 @@
+ Description: C Utility Library
+ Version: @VERSION@
+ Requires.private: @PCRE_REQUIRES@
+-Libs: -L${libdir} -lglib-2.0 @INTLLIBS@
++Libs: -L${libdir} -lglib-2.0 @INTLLIBS@ @ICONV_LIBS@
+ Libs.private: @G_THREAD_LIBS@ @G_LIBS_EXTRA@ @PCRE_LIBS@ @INTLLIBS@ @ICONV_LIBS@
+ Cflags: -I${includedir}/glib-2.0 -I${libdir}/glib-2.0/include @GLIB_EXTRA_CFLAGS@
