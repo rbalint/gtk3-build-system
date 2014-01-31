@@ -1,1 +1,0 @@
- Go to "z_Install" folder and read "INSTRUCTIONS.txt".
