@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e
 
 # Download the whole stack via git
 
