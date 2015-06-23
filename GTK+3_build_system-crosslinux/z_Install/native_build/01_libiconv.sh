@@ -9,6 +9,7 @@ cd ..
 patch -p0 < Makefiledevel.patch
 cd libiconv
 
+sed -i 's/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = 0.19/' po/Makefile.in.in
 
 echo Compile...
 
