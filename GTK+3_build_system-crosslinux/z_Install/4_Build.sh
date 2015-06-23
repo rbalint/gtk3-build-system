@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e
 
 # 1) native build, required for some tools needed during win32 build later
 export BUILD=native

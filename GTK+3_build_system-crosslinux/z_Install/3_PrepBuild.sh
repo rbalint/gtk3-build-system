@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Source variables here, please modify this script only
 source ./vars.sh
 
