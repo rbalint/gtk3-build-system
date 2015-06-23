@@ -4,7 +4,7 @@ set -e
 
 IFS=","
 for LIB in 01_libiconv,git://git.savannah.gnu.org/libiconv.git,libiconv \
-               02_gettext,git://git.savannah.gnu.org/gettext.git \
+               02_gettext,git://git.savannah.gnu.org/gettext.git,gettext \
                11_zlib,https://github.com/madler/zlib,zlib \
                12_xz,http://git.tukaani.org/xz.git,xz \
                13_libxml2,git://git.gnome.org/libxml2,libxml2 \
