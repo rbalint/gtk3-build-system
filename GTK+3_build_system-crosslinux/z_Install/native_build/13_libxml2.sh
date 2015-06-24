@@ -5,7 +5,7 @@ cd libxml2
 
 echo Compile...
 
-./autogen.sh --enable-static --disable-shared --with-python=no --prefix="$PREFIX"
+./autogen.sh --enable-static --disable-shared --with-python=no --prefix="$PREFIX" --with-zlib="$PREFIX"
 make
 make install
 #make clean

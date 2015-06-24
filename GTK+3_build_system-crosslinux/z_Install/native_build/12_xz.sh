@@ -2,14 +2,6 @@
 cd ../../libs/12_xz
 cd xz
 
-
-echo Applying patch to use installed version of autotools and gettext...
-
-cd ..
-patch -p0 < configureac.patch
-cd xz
-
-
 echo Compile...
 
 ./autogen.sh
