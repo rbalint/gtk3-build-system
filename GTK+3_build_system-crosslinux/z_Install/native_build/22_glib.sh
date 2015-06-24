@@ -5,9 +5,7 @@ cd glib
 
 echo Patch the .pc file
 
-cd ..
-patch -p0 < glib20pc.patch
-cd glib
+patch -p1 < ../glib20pc.patch
 
 echo Compile...
 
