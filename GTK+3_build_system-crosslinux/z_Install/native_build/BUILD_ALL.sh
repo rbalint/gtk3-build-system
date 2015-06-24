@@ -22,6 +22,7 @@ sh -e ./42_libjasper.sh
 sh -e ./43_libtiff.sh
 sh -e ./44_gdk-pixbuf.sh
 sh -e ./45_gnome-common.sh
+sh -e ./50_libepoxy.sh
 sh -e ./51_atk.sh
 sh -e ./52_gtk3.sh
 

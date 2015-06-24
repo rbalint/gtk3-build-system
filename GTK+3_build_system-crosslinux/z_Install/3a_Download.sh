@@ -21,6 +21,7 @@ for LIB in 01_libiconv,git://git.savannah.gnu.org/libiconv.git,libiconv \
                43_libtiff,https://github.com/LuaDist/libtiff,libtiff \
                44_gdk-pixbuf,git://git.gnome.org/gdk-pixbuf,gdk-pixbuf \
                45_gnome-common,git://git.gnome.org/gnome-common,gnome-common \
+               50_libepoxy,https://github.com/anholt/libepoxy.git,libepoxy \
                51_atk,git://git.gnome.org/atk,atk \
                52_gtk3,git://git.gnome.org/gtk+,gtk+ \
                61_libcroco,git://git.gnome.org/libcroco,libcroco \
