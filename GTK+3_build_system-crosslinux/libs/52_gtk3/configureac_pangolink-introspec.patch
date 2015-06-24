@@ -1,6 +1,21 @@
---- gtk+/configure.ac	2013-08-28 23:35:00.721510809 +0200
-+++ gtk+/configure.ac	2013-08-28 23:35:24.212366860 +0200
-@@ -1264,9 +1264,6 @@
+diff --git a/autogen.sh b/autogen.sh
+index 250f80d..e1adab8 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -26,7 +26,7 @@ fi
+ pkg-config --print-errors gobject-introspection-1.0
+ if [ $? != 0 ]; then
+ 	echo "You probably need to install 'libgirepository1.0-dev'"
+-	exit 1
++#	exit 1
+ fi
+ 
+ # README and INSTALL are required by automake, but may be deleted by clean
+diff --git a/configure.ac b/configure.ac
+index b99af91..4322178 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1300,9 +1300,6 @@ if $PKG_CONFIG --uninstalled $PANGO_PACKAGES; then
  else
  	gtk_save_LIBS="$LIBS"
          LIBS="$PANGO_LIBS $LIBS"
@@ -10,16 +25,14 @@
          LIBS="$gtk_save_LIBS"
  fi
  
-@@ -1551,12 +1548,6 @@
- GLIB_GSETTINGS
- 
+@@ -1624,8 +1621,8 @@ GLIB_GSETTINGS
+ # GObject introspection
  ##################################################
--# GObject introspection
--##################################################
--
+ 
 -GOBJECT_INTROSPECTION_CHECK(introspection_required_version)
 -
--##################################################
- # Packagekit module
++#GOBJECT_INTROSPECTION_CHECK(introspection_required_version)
++AM_CONDITIONAL(HAVE_INTROSPECTION, false)
+ ##################################################
+ # colord module
  #################################################
- 

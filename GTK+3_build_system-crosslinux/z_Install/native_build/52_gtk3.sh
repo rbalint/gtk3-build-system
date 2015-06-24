@@ -6,11 +6,8 @@ cd gtk+
 echo Patching the configure script to avoid gobject-introspection
 echo and test-linking with Pango....
 
-cd ..
 #patch -p0 < lrn.patch
-patch -p0 < configureac_pangolink-introspec.patch
-patch -p0 < Makefileam-introspec.patch 
-cd gtk+
+patch -p1 < ../configureac_pangolink-introspec.patch
 
 echo Flags needed to compile..
 
