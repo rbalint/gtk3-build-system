@@ -16,6 +16,7 @@ for LIB in 01_libiconv,git://git.savannah.gnu.org/libiconv.git,libiconv \
                33_libfontconfig,git://anongit.freedesktop.org/fontconfig,fontconfig \
                34_pixman,git://anongit.freedesktop.org/pixman,pixman \
                35_cairo,git://anongit.freedesktop.org/cairo,cairo \
+               35z_harfbuzz,git://anongit.freedesktop.org/harfbuzz,harfbuzz \
                36_pango,git://git.gnome.org/pango,pango \
                43_libtiff,https://github.com/LuaDist/libtiff,libtiff \
                44_gdk-pixbuf,git://git.gnome.org/gdk-pixbuf,gdk-pixbuf \
