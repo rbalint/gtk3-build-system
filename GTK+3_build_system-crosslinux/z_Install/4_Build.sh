@@ -13,6 +13,7 @@ cd native_build
 cd ..
 
 # copy some of the necessary native tools to "cache" dir
+test -d cache || mkdir cache
 cp "$PREFIX/bin/glib-genmarshal" cache/
 cp "$PREFIX/bin/glib-compile-schemas" cache/
 cp "$PREFIX/bin/glib-compile-resources" cache/
