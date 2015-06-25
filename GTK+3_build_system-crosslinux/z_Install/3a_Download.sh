@@ -29,10 +29,10 @@ for LIB in 01_libiconv,git://git.savannah.gnu.org/libiconv.git,libiconv \
                73_gnome-icon-theme,git://git.gnome.org/gnome-icon-theme,gnome-icon-theme \
                74_gnome-icon-theme-symbolic,git://git.gnome.org/gnome-icon-theme-symbolic,gnome-icon-theme-symbolic; do
     set $LIB
-    if ! test -d ../../libs/$1; then
-        mkdir ../../libs/$1
+    if ! test -d ../libs/$1; then
+        mkdir ../libs/$1
     fi
-    (cd ../../libs/$1
+    (cd ../libs/$1
     if ! test -d $3; then
         git clone $2 $3
     fi)
