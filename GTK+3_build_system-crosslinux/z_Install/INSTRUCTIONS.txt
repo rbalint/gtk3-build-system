@@ -1,7 +1,7 @@
 
  GTK+ Build system (cross-linux) - by Tarnyko <tarnyko@tarnyko.net>
  -------------------------------
- (as for the moment, this build environment only runs of Linux CentOS 6.0.
+ (as for the moment, this build environment only runs of Linux CentOS 7.1.
   It's easily extensible, though)
 
  (To customize the process, edit the "vars.sh" script and modify :
@@ -14,7 +14,7 @@
 
 1) Run "1_Prereq.sh" to install the prerequisites (distro-specific).
 
-2) Run "2_MinGW.sh" to install MinGW (distro-specific).
+2) Run "2_MinGW.sh" to install MinGW (distro-specific, currently covered in 1_Prereq.sh).
 
 3) Run "3_PrepBuild.sh" to prepare the build directories & vars.
 
